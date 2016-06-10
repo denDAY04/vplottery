@@ -1,0 +1,27 @@
+﻿<Window x:Class="Velvet_Pearl_Lottery.Views.WndDialogMessage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Velvet_Pearl_Lottery.Views"
+        mc:Ignorable="d"
+        Title="" Height="200" Width="250"
+        MaxWidth="500"
+        MinWidth="300"
+        Style="{DynamicResource Datapad}" 
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Grid Name="DialogGrid">
+        <StackPanel Name="StackPanelMessage" Orientation="Horizontal" Margin="10,10,10,40" MinHeight="75">
+            <Image x:Name="Image" Width="75" Stretch="None" VerticalAlignment="Center"/>
+            <TextBlock x:Name="TxtblkMessage" TextWrapping="WrapWithOverflow" Text="Message goes here" Margin="0,10,0,0" VerticalAlignment="Center" MaxWidth="400"/>
+        </StackPanel>
+        <Button x:Name="BtnOk" Content="OK" Margin="0,0,10,10" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="BtnOk_Click" />
+        <Button x:Name="BtnCancel" Content="Cancel" Margin="0,0,10,10" Height="24" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Visibility="Collapsed" Click="BtnCancel_Click"/>
+        <Button x:Name="BtnYes" Content="Yes" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Visibility="Collapsed" Click="BtnYes_Click"/>
+        <Button x:Name="BtnNo" Content="No" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Visibility="Collapsed" Click="BtnNo_Click"/>
+
+    </Grid>
+</Window>

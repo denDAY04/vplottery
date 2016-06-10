@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="{DynamicResource ModuleBaseBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBaseBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextBaseBrush}"/>
+    </Style>
+</ResourceDictionary>

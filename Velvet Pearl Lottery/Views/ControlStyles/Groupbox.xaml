@@ -1,0 +1,54 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style TargetType="{x:Type GroupBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!--Header top bar-->
+                        <Border Grid.Row="0"
+                                BorderThickness="3"
+                                CornerRadius="30,30,0,0"
+                                BorderBrush="#FF00729E"
+                                Background="#FF00729E">
+                            
+                        </Border>
+                        
+                        <!--Header text-->
+                        <Border Grid.Row="1" 
+                                BorderThickness="0"
+                                BorderBrush="{DynamicResource BorderBaseBrush}"
+                                Background="{DynamicResource WindowBaseBrush}">
+                            <Label Foreground="{DynamicResource TextBaseBrush}"  FontFamily="Trajan Pro">
+                                <ContentPresenter Margin="3" ContentSource="Header" RecognizesAccessKey="True"/>
+                            </Label>
+                        </Border>
+
+                        <!--Header bottom bar-->
+                        <Border Grid.Row="2"
+                                BorderThickness="3"
+                                CornerRadius="0,0,30,30"
+                                BorderBrush="#FF00729E"
+                                Background="#FF00729E">
+                            
+                        </Border>
+                        
+                        <!--Border arond group content-->
+                        <Border Grid.Row="3" BorderThickness="1,0,1,1" BorderBrush="{DynamicResource BorderBaseBrush}">
+                            <ContentPresenter Margin="2" />
+                        </Border>
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

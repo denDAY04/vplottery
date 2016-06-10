@@ -1,0 +1,20 @@
+﻿<Window x:Class="Velvet_Pearl_Lottery.Views.WndTicketComment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Velvet_Pearl_Lottery.Views"
+        mc:Ignorable="d"
+        Title="Ticket Comment" Height="212.288" Width="300"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterOwner"
+        SizeToContent="WidthAndHeight"
+        Style="{StaticResource Datapad}"
+        ShowInTaskbar="False" Closed="Window_Closed">
+    <Grid>
+        <Label x:Name="LabTicketComment" Content="Comment" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Trajan Pro" FontSize="18" FontWeight="Bold"/>
+        <TextBox x:Name="TxtTicketComment" Margin="10,49,12,43" TextWrapping="Wrap" Text="Hello, World!" MaxWidth="272" TabIndex="0" FontFamily="Palatino Linotype"/>
+        <Button x:Name="BtnOk" Content="OK" Margin="207,151,12,12" MinWidth="60" MinHeight="20" Click="BtnClose_Click" TabIndex="1"/>
+
+    </Grid>
+</Window>

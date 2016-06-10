@@ -1,0 +1,65 @@
+﻿<Application x:Class="Velvet_Pearl_Lottery.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="Views/WndWelcome.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--====================-->
+            <!-- Colors and brushes -->
+            <!--====================-->
+            <!--Background/window-->
+            <Color x:Key="WindowBaseColor">#FF010E19</Color>
+            <SolidColorBrush x:Key="WindowBaseBrush">#FF010E19</SolidColorBrush>
+            
+            <!--Modules-->
+            <Color x:Key="ModuleBaseColor">#FF012839</Color>
+            <Color x:Key="ModuleHeaderBaseColor">#FF011219</Color>
+            <Color x:Key="ModuleHeaderLightColor">#ff00394d</Color>
+            <Color x:Key="ModuleHeaderMouseoverColor">#FF0099cc</Color>
+            <Color x:Key="ModuleSelectionBaseColor">#FF165069</Color>
+            <Color x:Key="ModuleSelectionUnfocusedColor">#FF2D4753</Color>
+            <SolidColorBrush x:Key="ModuleBaseBrush">#FF012839</SolidColorBrush>
+            <SolidColorBrush x:Key="ModuleHeaderBush">#FF011219</SolidColorBrush>
+            <SolidColorBrush x:Key="ModuleHeaderMouseoverBush">#FF024764</SolidColorBrush>
+
+            <!--Fonts/text-->
+            <Color x:Key="TextBaseColor">#FF33A6D3</Color>
+            <Color x:Key="TextDisabledColor">#FF708090</Color>
+            <SolidColorBrush x:Key="TextBaseBrush">#FF33A6D3</SolidColorBrush>
+            <SolidColorBrush x:Key="TextDisabledBrush">#FF708090</SolidColorBrush>
+            
+            <!--Borders-->
+            <Color x:Key="BorderBaseColor">#FF00749C</Color>
+            <Color x:Key="BorderDarkColor">#10006080</Color>
+            <Color x:Key="BorderMouseoverColor">#00bfff</Color>
+            <Color x:Key="BorderDisabledColor">#FF708090</Color>
+            <SolidColorBrush x:Key="BorderBaseBrush">#FF00749C</SolidColorBrush>
+            <SolidColorBrush x:Key="BorderMouseoverBrush">#00bfff</SolidColorBrush>
+            <SolidColorBrush x:Key="BorderDisabledBrush">#FF708090</SolidColorBrush>
+            <SolidColorBrush x:Key="BorderFocusBrush">#ff33ccff</SolidColorBrush>
+
+            <!--Buttons-->
+            <Color x:Key="ButtonBaseColor">#FF010E19</Color>
+            <Color x:Key="ButtonClickColor">#FF00334D</Color>
+            <SolidColorBrush x:Key="ButtonBaseBrush">#FF010E19</SolidColorBrush>
+            <SolidColorBrush x:Key="ButtonClickBrush">#ff00334D</SolidColorBrush>
+
+            <!--=================-->
+            <!-- External styles -->
+            <!--=================-->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Views/ControlStyles/Tooltip.xaml"/>
+                <ResourceDictionary Source="Views/ControlStyles/Font.xaml" />
+                <ResourceDictionary Source="Views/ControlStyles/ListView.xaml" />
+                <ResourceDictionary Source="Views/ControlStyles/Window.xaml" />
+                <ResourceDictionary Source="Views/ControlStyles/Border.xaml"/>
+                <ResourceDictionary Source="Views/ControlStyles/Button.xaml"/>
+                <ResourceDictionary Source="Views/ControlStyles/Groupbox.xaml"/>
+                <ResourceDictionary Source="Views/ControlStyles/Textbox.xaml"/>
+                <ResourceDictionary Source="Views/ControlStyles/Checkbox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Application.Resources>
+
+</Application>

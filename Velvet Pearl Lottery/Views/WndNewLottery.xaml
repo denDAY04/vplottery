@@ -1,0 +1,26 @@
+﻿<Window x:Class="Velvet_Pearl_Lottery.Views.WndNewLottery"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Velvet_Pearl_Lottery.Views"
+        mc:Ignorable="d"
+        Title="New Lottery" Height="231.991" Width="302.331"
+        WindowStartupLocation="CenterOwner"
+        SizeToContent="WidthAndHeight" Closing="Window_Closing"
+        Style="{StaticResource Datapad}"
+        ShowInTaskbar="False">
+    <Grid>
+        <Label x:Name="LabLotteryNumRange" Content="Lottery Number Range:" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" FontFamily="Global Monospace" FontWeight="Bold"/>
+        <TextBox x:Name="TxtLotteryNumRangeMin" HorizontalAlignment="Left" Height="23" Margin="176,29,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="40"  IsEnabled="False" ToolTip="The lowest lottery number that can be drawn"/>
+        <Label x:Name="LabLotteryNumRangeHypen" Content="-" HorizontalAlignment="Left" Margin="221,28,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtLotteryNumRangeMax" HorizontalAlignment="Left" Height="23" Margin="241,29,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="40" ToolTip="The highest lottery number that can be drawn" TabIndex="0"/>
+        <Label x:Name="LabTicketPrice" Content="Ticket Price:" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" FontFamily="Global Monospace" FontWeight="Bold"/>
+        <TextBox x:Name="TxtTicketPrice" HorizontalAlignment="Left" Height="23" Margin="176,86,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="40" ToolTip="Price for a ticket" TabIndex="1"/>
+        <Label x:Name="LabCredits" Content="Credits" HorizontalAlignment="Left" Margin="222,85,0,0" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Global Monospace"/>
+        <Button x:Name="BtnCreate" Content="Create" Margin="146,171,0,0" Click="BtnCreate_Click" ToolTip="Create new lottery" MinWidth="60"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" TabIndex="2"/>
+        <Button x:Name="BtnCancel" Content="Cancel" Margin="224,171,10,7" Click="BtnCancel_Click" ToolTip="Cancel and go back to start" MinWidth="60" TabIndex="3"/>
+        <TextBlock x:Name="TxtLabErrorMsg" HorizontalAlignment="Left" Margin="10,131,0,0" TextWrapping="WrapWithOverflow" Text="" VerticalAlignment="Top" Height="35" Width="272" ScrollViewer.VerticalScrollBarVisibility="Disabled" MaxWidth="270" MaxHeight="35" FontStyle="Italic"/>
+
+    </Grid>
+</Window>

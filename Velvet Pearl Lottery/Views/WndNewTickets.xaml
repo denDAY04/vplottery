@@ -1,0 +1,49 @@
+﻿<Window x:Class="Velvet_Pearl_Lottery.Views.WndNewTickets"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Velvet_Pearl_Lottery.Views"
+        xmlns:models="clr-namespace:Velvet_Pearl_Lottery.Models"
+        mc:Ignorable="d"
+        Title="New Ticket(s)" Height="438.527" Width="376.913"
+        ResizeMode="CanMinimize"
+        Closing="NewTicketsWindow_OnClosing"
+        WindowStartupLocation="CenterOwner"
+        SizeToContent="WidthAndHeight"
+        Style="{StaticResource Datapad}"
+        ShowInTaskbar="False">
+    <Grid>
+        <Label x:Name="LabOwner" Content="Owner:" HorizontalAlignment="Left" Margin="12,9,0,0" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Global Monospace" FontSize="14"/>
+        <TextBox x:Name="TxtOwner" HorizontalAlignment="Left" Height="23" Margin="12,36,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="175" TabIndex="0"/>
+        <Label x:Name="LabPrize" Content="Total Price:" HorizontalAlignment="Left" Margin="12,60,0,0" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Global Monospace" FontSize="14"/>
+        <TextBox x:Name="TxtPrize" HorizontalAlignment="Left" Height="23" Margin="12,90,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="75" IsEnabled="False" TabIndex="1"/>
+        <Label x:Name="LabPrizeCredits" Content="Credits" HorizontalAlignment="Left" Margin="92,87,0,0" VerticalAlignment="Top" FontFamily="Global Monospace" FontSize="14"/>
+        <GroupBox x:Name="GrpNewTicket" Header="New Ticket" Margin="173,133,12,0" VerticalAlignment="Top" Height="232" ToolTip="Buy another ticket">
+            <Grid HorizontalAlignment="Left" Height="155" Margin="0,0,-2,-2" VerticalAlignment="Top" Width="173">
+                <Button x:Name="BtnAddTicket" Content="Add Ticket" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="90" Click="BtnAddTicket_Click" ToolTip="Add another ticket to the purchase" TabIndex="4"/>
+                <TextBox x:Name="TxtSpecificLotteryNumber" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="151" IsEnabled="False" TabIndex="3"/>
+                <CheckBox x:Name="ChkRandomLotteryNumber" Content="Random" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" IsChecked="True" Checked="ChkRandomLotteryNumber_Checked" Unchecked="ChkRandomLotteryNumber_Unchecked" ToolTip="Unckeck to enable specific number" FontFamily="Global Monospace" TabIndex="2"/>
+                <Label x:Name="LabSpecificLotteryNumber" Content="Lottery Number:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.524,0.5" FontWeight="Bold" FontFamily="Global Monospace" FontSize="14"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="GrpTickets" Header="Tickets" HorizontalAlignment="Left" Margin="12,133,0,0" ToolTip="Your bought tickets" VerticalAlignment="Top" Height="232" Width="145">
+            <Grid HorizontalAlignment="Left" Width="103" Margin="0,0,0,1">
+                <ListView x:Name="LwTickets" Height="99" VerticalAlignment="Top" SelectionMode="Single" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10,10,-25,0" TabIndex="5">
+                    <ListView.DataContext>
+                        <models:Ticket/>
+                    </ListView.DataContext>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Lottery Number" Width="95" DisplayMemberBinding="{Binding LotteryNumber}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Button x:Name="BtnRemoveTicket" Content="Remove Ticket" HorizontalAlignment="Left" Margin="10,115,-10,0" VerticalAlignment="Top" Width="103" Click="BtnRemoveTicket_Click" ToolTip="Add another ticket to the purchase" TabIndex="6"/>
+                <Button x:Name="BtnAddComment" Content="Add Comment" HorizontalAlignment="Left" Margin="10,144,-10,0" VerticalAlignment="Top" Width="103" Click="BtnAddComment_Click" ToolTip="Add a comment to the selected number" TabIndex="7"/>
+            </Grid>
+        </GroupBox>
+        <Button x:Name="BtnAccept" Content="Accept" Margin="196,377,0,10" Click="BtnCreate_Click" MinWidth="60" MinHeight="23" HorizontalAlignment="Left" Width="75" TabIndex="8"/>
+        <Button x:Name="BtnCancel" Content="Cancel" Margin="284,377,12,10" Click="BtnCancel_Click" MinWidth="60" MinHeight="23" TabIndex="9"/>
+    </Grid>
+</Window>
