@@ -243,3 +243,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+# Executable included into the installer
+Velvet Pearl Lottery Setup/resources/Velvet Pearl Lottery.exe

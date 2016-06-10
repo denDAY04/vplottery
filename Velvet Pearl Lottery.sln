@@ -10,6 +10,12 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Velvet Pearl Lottery Setup"
 		{73D0ACAB-C428-469A-A430-A421DF5BC964} = {73D0ACAB-C428-469A-A430-A421DF5BC964}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BBE002E1-4D2E-490C-9E35-CDD008C77598}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
