@@ -1,0 +1,12 @@
+------------
+:: v1.0.0 ::
+------------
+Product ID 		:	{CAC5EA9E-44CE-440F-A01C-C14C6AB6F0C4}
+Upgrade Code	:	{5E0D6E48-B45B-49BE-ABA2-27658B9F2304}
+
+------------
+:: v1.0.1 ::
+------------
+Product ID 		:	{371A271D-3615-42FC-8622-02873EFF79AE}
+Upgrade Code	:	{5E0D6E48-B45B-49BE-ABA2-27658B9F2304}
+

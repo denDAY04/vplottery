@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="Velvet Pearl Lottery" Language="1033" Version="1.0.0.0" Manufacturer="Velvet Pearl" UpgradeCode="752460f2-f6ae-4729-a46b-1e38244d795a">
-	  <Package Keywords="Installer" InstallerVersion="200" Compressed="yes" Description="Velvet Pearl Lottery 1.0.0 Installer" InstallScope="perMachine" />
-
-     
-		<MajorUpgrade DowngradeErrorMessage="A newer version of Velvet Pearl Lottery is already installed." />
+  <!--Custom variables-->
+  <!--TODO: update both AppVersion and ProductId when updating product-->
+  <?define AppVersion="1.0.0"?>
+  <?define ProductId="{CAC5EA9E-44CE-440F-A01C-C14C6AB6F0C4}"?>
+  <!-- ================ -->
+  <?define UpgradeCode="{5E0D6E48-B45B-49BE-ABA2-27658B9F2304}"?>
+   
+  <!--The product that will be installed-->
+  <Product Id="$(var.ProductId)" Name="Velvet Pearl Lottery" Language="1033" Version="$(var.AppVersion)" Manufacturer="denDAY" UpgradeCode="$(var.UpgradeCode)">    
+	  <Package Keywords="Installer" InstallerVersion="200" Compressed="yes" Description="Velvet Pearl Lottery $(var.AppVersion) Installer" InstallScope="perMachine" />     
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 		<MediaTemplate EmbedCab="yes"/>
 
-		<Feature Id="Complete" Title="Velvet Pearl Lottery" 
+		<Feature Id="Complete" Title="Velvet Pearl Lottery $(var.AppVersion)" 
              Description="The complete package." 
              Display="expand" 
              Level="1" 
