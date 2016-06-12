@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <!--Custom variables-->
-  <!--TODO: update both AppVersion and ProductId when updating product-->
-  <?define AppVersion="1.0.0"?>
-  <?define ProductId="{CAC5EA9E-44CE-440F-A01C-C14C6AB6F0C4}"?>
-  <!-- ================ -->
-  <?define UpgradeCode="{5E0D6E48-B45B-49BE-ABA2-27658B9F2304}"?>
-   
+  <?include InstallerVarsGlobal.wxi?>
+    
   <!--The product that will be installed-->
   <Product Id="$(var.ProductId)" Name="Velvet Pearl Lottery" Language="1033" Version="$(var.AppVersion)" Manufacturer="denDAY" UpgradeCode="$(var.UpgradeCode)">    
-	  <Package Keywords="Installer" InstallerVersion="200" Compressed="yes" Description="Velvet Pearl Lottery $(var.AppVersion) Installer" InstallScope="perMachine" />     
+	  <Package Keywords="Installer" InstallerVersion="200" Compressed="yes" Description="Velvet Pearl Lottery $(var.AppVersion) Installer" InstallScope="perMachine"/>     
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 		<MediaTemplate EmbedCab="yes"/>
 
@@ -36,9 +31,11 @@
     <Icon Id="ApplicationIcon.exe" SourceFile="resources\vpl_program.ico"/>
     <Icon Id="ApplicationIcon.ico" SourceFile="resources\vpl_program.ico"/>
     
-    <!--Set icon appearing in Windows Control Panel -> Add/Remove Programs--> 
+    <!--Set info for Control Panel -> Add/Remove Programs entry--> 
     <Icon Id="DatafileIcon.ico" SourceFile="resources\velvet_pearl_lottery_file.ico"/>
     <Property Id="ARPPRODUCTICON" Value="ApplicationIcon.ico"/>
+    <Property Id="ARPCONTACT">http://www.enjin.com/profile/493549</Property>
+    <Property Id="ARPHELPLINK">http://files.enjin.com/72287/apps/Velvet%20Pearl%20Lottery/help.html</Property>
     
     <!--GUI references - use minimum while allowing for custom install path-->
     <UIRef Id="WixUI_InstallDir"/>
@@ -46,55 +43,64 @@
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR"/>
     <WixVariable Id="WixUILicenseRtf" Value="resources\license.rtf"/>
     
-    <!--Windows 7 or bigger, conditon-->
-    <Condition Message="The application can only be installed on Windows 7 or newer">VersionNT >= 601</Condition>
-  </Product>
-
+    <!--Windows 7 or bigger, condition-->
+    <Condition Message="The application can only be installed on Windows 7 or newer">
+      VersionNT >= 601
+    </Condition>
+    <!--.Net 4.5 condition-->
+    <PropertyRef Id="NETFRAMEWORK45"/>
+    <Condition Message="This setup requires the Mictrosoft .NET Framework 4.5 installed.">
+      <![CDATA[Installed OR NETFRAMEWORK45]]>
+    </Condition>
+  </Product>  
+    
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			
       <Directory Id="ProgramFilesFolder">
         <Directory Id="VelvetPearlDir" Name="Velvet Pearl">
-				  <Directory Id="INSTALLDIR" Name="Velvet Pearl Lottery" />
+          <Directory Id="LotteryDir" Name="Lottery">
+				    <Directory Id="INSTALLDIR" />
 
-          <!--Resource directory-->          
-          <Directory Id="ResourceDir" Name="Resources">
-            <!--Icon for data (.vplf) files-->
-            <Component Id="DatafileIcon" Guid="*">           
-              <File Id="DatafileIconVPLF" Name="vplf.ico" Source="resources\velvet_pearl_lottery_file.ico" />
-            </Component>  
-            <!--Icon for exe-->
-            <Component Id="ProgramIcon" Guid="*">
-              <File Id="ProgramIconEXE" Name="Velvet Pearl Lottery.ico" Source="resources\vpl_program.ico"/>
-            </Component>
-          </Directory>                    
+            <!--Resource directory-->          
+            <Directory Id="ResourceDir" Name="Resources">
+              <!--Icon for data (.vplf) files-->
+              <Component Id="DatafileIcon" Guid="*">           
+                <File Id="DatafileIconVPLF" Name="vplf.ico" Source="resources\velvet_pearl_lottery_file.ico" />
+              </Component>  
+              <!--Icon for exe-->
+              <Component Id="ProgramIcon" Guid="*">
+                <File Id="ProgramIconEXE" Name="Velvet Pearl Lottery.ico" Source="resources\vpl_program.ico"/>
+              </Component>
+            </Directory>                    
 
-          <!--Main program/executable-->
-          <Component Id="MainExecutable" Guid="*">
-            <!--Executable file-->
-            <File Id="VelvetPearlLotteryEXE" Name="Velvet Pearl Lottery.exe" Source="resources\Velvet Pearl Lottery.exe" KeyPath="yes">
-              <Shortcut Id="startMenuShortcut" Directory="ProgramMenuDir" Name="Velvet Peral Lottery" WorkingDirectory="INSTALLDIR" Icon="ApplicationIcon.exe" IconIndex="0" Advertise="yes"/>
-              <Shortcut Id="desktopShortcut" Directory="DesktopFolder" Name="Velvet Pearl Lottery" WorkingDirectory="INSTALLDIR" Icon="ApplicationIcon.exe" IconIndex="0" Advertise="yes"/>
-            </File>
-            <!--Associate .vplf files and give an icon in registry-->
-            <ProgId Id="LotteryDataFileFormat" Description="Velvet Pearl Lottery data file" Advertise="yes" Icon="DatafileIcon.ico">
-              <Extension Id="vplf">
-                <Verb Id="open" Command="Open" Argument='"%1"' />
-                <MIME Advertise="yes" ContentType="application/vplf" Default="yes"/>
-              </Extension>
-            </ProgId>
-          </Component>   
+            <!--Main program/executable-->
+            <Component Id="MainExecutable" Guid="*">
+              <!--Executable file-->
+              <File Id="VelvetPearlLotteryEXE" Name="Velvet Pearl Lottery.exe" Source="resources\Velvet Pearl Lottery.exe" KeyPath="yes">
+                <Shortcut Id="startMenuShortcut" Directory="ProgramMenuDir" Name="Velvet Pearl Lottery" WorkingDirectory="INSTALLDIR" Icon="ApplicationIcon.exe" IconIndex="0" Advertise="yes"/>
+                <Shortcut Id="desktopShortcut" Directory="DesktopFolder" Name="Velvet Pearl Lottery" WorkingDirectory="INSTALLDIR" Icon="ApplicationIcon.exe" IconIndex="0" Advertise="yes"/>
+              </File>
+              <!--Associate .vplf files and give an icon in registry-->
+              <ProgId Id="LotteryDataFileFormat" Description="Velvet Pearl Lottery data file" Advertise="yes" Icon="DatafileIcon.ico">
+                <Extension Id="vplf">
+                  <Verb Id="open" Command="Open" Argument='"%1"' />
+                  <MIME Advertise="yes" ContentType="application/vplf" Default="yes"/>
+                </Extension>
+              </ProgId>
+            </Component>   
           
-         <!--Readme file-->
-        <Component Id="Readme" Guid="*">
-          <File Id="ReadmeTXT" Name="README.txt" Source="resources\README.txt"/>
-        </Component>
-          
-        <!--License file-->
-          <Component Id="License" Guid="*">
-            <File Id="LicenseRTF" Name="LICENSE.rtf" Source="resources\license.rtf"/>
+           <!--Readme file-->
+          <Component Id="Readme" Guid="*">
+            <File Id="ReadmeTXT" Name="README.txt" Source="resources\README.txt"/>
           </Component>
           
+          <!--License file-->
+            <Component Id="License" Guid="*">
+              <File Id="LicenseRTF" Name="LICENSE.rtf" Source="resources\license.rtf"/>
+            </Component>
+          
+          </Directory>
         </Directory>
 			</Directory>
 

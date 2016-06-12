@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <!--Custom variables-->
+  <!--TODO: update both AppVersion and ProductId when updating product-->
+  <?define AppVersion="1.0.0"?>
+  <?define ProductId="{CAC5EA9E-44CE-440F-A01C-C14C6AB6F0C4}"?>
+  <!-- ================ -->
+  <?define UpgradeCode="{5E0D6E48-B45B-49BE-ABA2-27658B9F2304}"?>
+</Include>

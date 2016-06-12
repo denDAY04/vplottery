@@ -13,7 +13,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BBE002E1-4D2E-490C-9E35-CDD008C77598}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		InstallerVarsGlobal.wxi = InstallerVarsGlobal.wxi
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HTML pages", "HTML pages", "{6FD1B6E6-3C58-45EA-9A6D-734A41A9BB29}"
+	ProjectSection(SolutionItems) = preProject
+		help.html = help.html
 	EndProjectSection
 EndProject
 Global
@@ -41,5 +47,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6FD1B6E6-3C58-45EA-9A6D-734A41A9BB29} = {BBE002E1-4D2E-490C-9E35-CDD008C77598}
 	EndGlobalSection
 EndGlobal
