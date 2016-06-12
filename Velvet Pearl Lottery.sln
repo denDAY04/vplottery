@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		InstallerVarsGlobal.wxi = InstallerVarsGlobal.wxi
 		README.md = README.md
+		vpl_program.ico = vpl_program.ico
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HTML pages", "HTML pages", "{6FD1B6E6-3C58-45EA-9A6D-734A41A9BB29}"
