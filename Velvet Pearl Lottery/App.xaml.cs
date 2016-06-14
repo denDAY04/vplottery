@@ -1,6 +1,13 @@
 ﻿using System;
+using System.IO;
+using System.Net;
 using System.Runtime.Hosting;
+using System.Runtime.Serialization.Json;
+using System.Text;
 using System.Windows;
+using Newtonsoft.Json.Linq;
+using Velvet_Pearl_Lottery.Models;
+using Velvet_Pearl_Lottery.Views;
 
 namespace Velvet_Pearl_Lottery {
 
@@ -15,6 +22,27 @@ namespace Velvet_Pearl_Lottery {
         */
 
         protected override void OnStartup(StartupEventArgs e) {
+            var newUpdate = ApplicationUpdates.CheckForUpdate();
+            switch (newUpdate) {
+                case ApplicationUpdates.QueryStatus.Error:
+                    var msg = "Velvet Pearl Lottery could not check for updates.\n\nThis may be caused by a lack of internet connection or Enjin being down for maintenance.\nIf the problem persists, contact denDAY at \nhttp://www.enjin.com/profile/493549.";
+                    MessageBox.Show(msg, "Update Check Failed", MessageBoxButton.OK, MessageBoxImage.Information);                    
+                    break;
+
+                case ApplicationUpdates.QueryStatus.UpdateAvailable:
+                    var choice = MessageBox.Show("An Velvet Pearl Lottery update is available.\n\nDownload and install?",
+                        "New Update", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                    if (choice != MessageBoxResult.Yes)
+                        break;
+
+                    ApplicationUpdates.DownloadUpdate();
+                    break;
+
+                case ApplicationUpdates.QueryStatus.NoUpdate:
+                    // No action.
+                    break;
+            }
+
             // Retrieve the save file's name, if any. 
             if (e.Args.Length > 0) {
                 Properties["LoadfileName"] = e.Args[0];
@@ -32,11 +60,11 @@ namespace Velvet_Pearl_Lottery {
                     }
                 } catch (Exception) {
                     // The file couldn't be retrieved so proceed normal boot of the application.
-                }
-
-                base.OnStartup(e);
+                }                
             }
-
+            base.OnStartup(e);
         }
+
+        
     }
 }
