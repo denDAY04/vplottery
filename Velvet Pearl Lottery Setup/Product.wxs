@@ -25,6 +25,7 @@
         <ComponentRef Id="Readme"/>
         <ComponentRef Id="License"/>
         <ComponentRef Id="ProgramMenuDir" />
+        <ComponentRef Id="LotteryLogs"/>
       </Feature>    
 		</Feature>
 
@@ -57,6 +58,7 @@
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			
+      <!--Installation in Program Files folder-->
       <Directory Id="ProgramFilesFolder">
         <Directory Id="VelvetPearlDir" Name="Velvet Pearl">
           <Directory Id="LotteryDir" Name="Lottery">
@@ -114,7 +116,19 @@
         </Directory>
       </Directory>
 
+      <!--Desktop reference-->
       <Directory Id="DesktopFolder" Name="Desktop" />
+      
+      <!--Directory in C:\ProgramData for log files-->
+      <Directory Id="CommonAppDataFolder">
+        <Directory Id="VelvetPearlProgramDataDir" Name="Velvet Pearl">
+          <Directory Id="LotteryLogDir" Name="Lottery">
+            <Component Id="LotteryLogs" Guid="*">
+              <File Id="UpdateErrorsLOG" Name="Update errors.log" Source="resources\Update errors.log"/>
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
       
 		</Directory>    
 	</Fragment>

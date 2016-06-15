@@ -1,5 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
 using Velvet_Pearl_Lottery.Models;
@@ -15,8 +18,17 @@ namespace Velvet_Pearl_Lottery.Views {
     */
     public partial class WndWelcome : Window {
 
+        //! Flag for whether the end-user canceled the ongoing update.
+        private bool UpdateWasCancelled { get; set; }
+        //! The window displaying the update status.
+        private WndUpdateStatus UpdateStatusWnd { get; set; }
+
+        private ApplicationUpdate UpdateProcess { get; set; }
+
         //! Construct a new welcoming window.
         public WndWelcome() {
+            UpdateWasCancelled = false;
+
             InitializeComponent();
 
             Loaded += new RoutedEventHandler(WelcomeWindow_Loaded);
@@ -33,6 +45,13 @@ namespace Velvet_Pearl_Lottery.Views {
             lottery window, assuming no parse error occured.
         */
         private void WelcomeWindow_Loaded(object sender, RoutedEventArgs e) {
+            CheckForUpdates();
+            if (UpdateProcess != null && UpdateProcess.UpdateAvailable && !UpdateWasCancelled) {
+                // Close the application since the update installer has been opened.
+                Close();
+                return;
+            }
+
             if (Application.Current.Properties["LoadfileName"] == null)
                 return;
 
@@ -54,7 +73,56 @@ namespace Velvet_Pearl_Lottery.Views {
             var mainWindow = new WndMain(true, filename) {Owner = this, LotteryModel = importedLottery};
             mainWindow.Show();
             mainWindow.Owner = null;
-            this.Close();
+            Close();
+        }
+
+        //! Check for updates, prompting the end-user to download and install if found.
+        private void CheckForUpdates() {
+            UpdateProcess = ApplicationUpdate.CheckForUpdate();
+            if (UpdateProcess == null) {
+                const string msg = "Velvet Pearl Lottery could not check for updates.\n\nThis may be caused by a lack of internet connection or Enjin being down for maintenance." +
+                                           "If the problem persists, contact denDAY at \nwww.enjin.com/profile/493549.";
+                WndDialogMessage.Show(this, msg, "Update Check Failed", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            } else if (!UpdateProcess.UpdateAvailable)
+                return;
+
+            var choice = WndDialogMessage.Show(this, "A new update is available.\n\nDownload and install?", "New Update", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (choice != MessageBoxResult.Yes)
+                return;
+
+            // Download and register the install function (event handler) and cancel token.
+            if (!UpdateProcess.DownloadUpdateAsync(InstallUpdate))
+                return;
+            var cancelToken = new CancellationTokenSource();
+            cancelToken.Token.Register(CancelUpdate);
+            UpdateStatusWnd = new WndUpdateStatus(cancelToken) {StatusText = "Downloading update ...", Owner = this};
+            UpdateStatusWnd.ShowDialog();
+        }
+
+        //! Cancel the process downloading the update.
+        public void CancelUpdate() {
+            UpdateWasCancelled = true;
+            UpdateProcess.CancelDownload();
+            UpdateProcess = null;
+        }
+
+        /*!
+            \brief Run the downloaded installer (in another process) if no error occured.
+            
+            If an error occured the method sets the status text in the active WndUpdateStatus
+            window. If, however, the update was cancelled or downloaded without error, the window
+            is closed.
+        */
+        private void InstallUpdate(object sender, AsyncCompletedEventArgs e) {
+            if (e.Error != null) {
+                UpdateStatusWnd.StatusText = "The update has stopped because of an error.";
+                return;
+            }
+            // Close the update window and execute downloaded file in another process if the update wasn't canceled.
+            UpdateStatusWnd.Close();
+            if (!e.Cancelled)
+                System.Diagnostics.Process.Start(UpdateProcess.UpdateInstallerFile);
         }
 
         /*!
@@ -74,9 +142,9 @@ namespace Velvet_Pearl_Lottery.Views {
             var mainWindow = new WndMain(true) { Owner = this };
             mainWindow.Show();            
             mainWindow.Owner = null;
-            this.Hide();
+            Hide();
             mainWindow.OpenNewLotteryWindow();
-            this.Close();
+            Close();
         }
 
         //! Open dialog to open a save file for import.

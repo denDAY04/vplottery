@@ -60,6 +60,18 @@
     <ApplicationIcon>vpl_program.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
+    <ManifestCertificateThumbprint>F321C45FB1F4DA21E8B9F4C0FA962B9B9E264353</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Velvet Pearl Lottery_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
@@ -274,12 +286,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>for %25%25f in (
-"$(TargetFileName)"
-Newtonsoft.Json.dll
-) do (
-copy %25%25f "$(SolutionDir)Velvet Pearl Lottery Setup\resources\" /Y
-)</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)Velvet Pearl Lottery Setup\resources\" /Y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

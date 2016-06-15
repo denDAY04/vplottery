@@ -1,0 +1,19 @@
+﻿<Window x:Class="Velvet_Pearl_Lottery.Views.WndUpdateStatus"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Velvet_Pearl_Lottery.Views"
+        mc:Ignorable="d"
+        Title="Update Status" Height="133.475" Width="300"
+        Style="{DynamicResource Datapad}"
+        ResizeMode="CanMinimize"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="True">
+    <Grid>
+        <TextBlock x:Name="TxtUpdateStatus" Margin="10,20,10,0" TextWrapping="Wrap" Text="Update status text goes here" VerticalAlignment="Top" Height="45"/>
+        <Button x:Name="BtnCancel" Content="Cancel" Margin="209,70,10,10" Click="BtnCancel_Click"/>
+
+    </Grid>
+</Window>
