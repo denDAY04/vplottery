@@ -5,7 +5,7 @@ namespace Velvet_Pearl_Lottery.Views {
     //! Window for showing the status of the application updating.
     public partial class WndUpdateStatus : Window {
         
-        
+        //! Reference to the cancel token raised should the end-user cancel the update download.
         private CancellationTokenSource CancelTokenHandle { get; set; }
 
         //! Property for the status text displayed in the window.

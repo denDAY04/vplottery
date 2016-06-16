@@ -132,7 +132,7 @@ namespace Velvet_Pearl_Lottery.Views {
             if (!IsCanceling)
                 return;
 
-            var welcomeWindow = new WndWelcome() { Owner = this };
+            var welcomeWindow = new WndWelcome() { Owner = this, SkipUpdateCheck = true};
             welcomeWindow.Show();
             welcomeWindow.Owner = null;
 

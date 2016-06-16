@@ -19,16 +19,17 @@ namespace Velvet_Pearl_Lottery.Views {
     public partial class WndWelcome : Window {
 
         //! Flag for whether the end-user canceled the ongoing update.
-        private bool UpdateWasCancelled { get; set; }
-        //! The window displaying the update status.
-        private WndUpdateStatus UpdateStatusWnd { get; set; }
+        private bool UpdateWasCancelled { get; set; } = false;
+        //! Reference to the window displaying the update status.
+        private WndUpdateStatus UpdateStatusWnd { get; set; } = null;
+        //! Reference to the controller for the update process.
+        private ApplicationUpdate UpdateProcess { get; set; } = null;
 
-        private ApplicationUpdate UpdateProcess { get; set; }
+        //! Flag for whether to skip the check for updates.
+        public bool SkipUpdateCheck { get; set; } = false;
 
         //! Construct a new welcoming window.
         public WndWelcome() {
-            UpdateWasCancelled = false;
-
             InitializeComponent();
 
             Loaded += new RoutedEventHandler(WelcomeWindow_Loaded);
@@ -45,12 +46,14 @@ namespace Velvet_Pearl_Lottery.Views {
             lottery window, assuming no parse error occured.
         */
         private void WelcomeWindow_Loaded(object sender, RoutedEventArgs e) {
-            CheckForUpdates();
-            if (UpdateProcess != null && UpdateProcess.UpdateAvailable && !UpdateWasCancelled) {
-                // Close the application since the update installer has been opened.
-                Close();
-                return;
-            }
+            if (!SkipUpdateCheck) {
+                CheckForUpdates();
+                if (UpdateProcess != null && UpdateProcess.UpdateAvailable && !UpdateWasCancelled) {
+                    // Close the application since the update installer has been opened.
+                    Close();
+                    return;
+                }
+            }            
 
             if (Application.Current.Properties["LoadfileName"] == null)
                 return;
@@ -80,14 +83,14 @@ namespace Velvet_Pearl_Lottery.Views {
         private void CheckForUpdates() {
             UpdateProcess = ApplicationUpdate.CheckForUpdate();
             if (UpdateProcess == null) {
-                const string msg = "Velvet Pearl Lottery could not check for updates.\n\nThis may be caused by a lack of internet connection or Enjin being down for maintenance." +
+                const string msg = "Velvet Pearl Lottery could not check for updates.\n\nThis may be caused by a lack of internet connection or Enjin being down for maintenance. " +
                                            "If the problem persists, contact denDAY at \nwww.enjin.com/profile/493549.";
-                WndDialogMessage.Show(this, msg, "Update Check Failed", MessageBoxButton.OK, MessageBoxImage.Information);
+                WndDialogMessage.Show(this, msg, "Update Check Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             } else if (!UpdateProcess.UpdateAvailable)
                 return;
 
-            var choice = WndDialogMessage.Show(this, "A new update is available.\n\nDownload and install?", "New Update", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            var choice = WndDialogMessage.Show(this, "A new update is available.\n\nDownload and install?", "New Update", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (choice != MessageBoxResult.Yes)
                 return;
 

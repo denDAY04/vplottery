@@ -23,25 +23,38 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <hr/>
+                <hr />
             </div>
         </div>
         <div class="row">
             <div id="Contact" class="col-md-6">
-                <a href="http://www.enjin.com/profile/493549" title="Contact the application author">Contact denDAY</a>
+                <a href="http://www.enjin.com/profile/493549" title="Contact the program author">Contact denDAY</a>
             </div>
         </div>
 
-    <div class="row">
+        <div class="row">
             <div id="ChangeNotes" class="col-md-6">
                 <h3>Change Notes</h3>
                 <div id="ChangeNotesList" class="panel-group">
                     <!-- Place change notes in here - descending order! -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
+                            <a data-toggle="collapse" data-parent="#ChangeNotesList" href="#ChangeList_v1_1_0">v1.1.0</a>
+                        </div>
+                        <div id="ChangeList_v1_1_0" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul>
+                                    <li>The program now automatically checks for updates, and should a new version be found it will prompt the end-user to download and install it.</li>
+                                    <li>An uninstall shortcut is now accessible in the install folder (<i>C:\Program Files (x86)\Velvet Pearl\Lottery\</i> by default).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
                             <a data-toggle="collapse" data-parent="#ChangeNotesList" href="#ChangeList_v1_0_1">v1.0.1</a>
                         </div>
-                        <div id="ChangeList_v1_0_1" class="panel-collapse collapse in">
+                        <div id="ChangeList_v1_0_1" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <ul>
                                     <li>Fixed typo in name of menu shortcut.</li>
@@ -88,21 +101,21 @@
                     </div>
                     <div id="QRequirements" class="panel-collapse collapse">
                         <div class="panel-body">
-                            To install and run the application you must have Microsoft .NET Framework 4.5 and Windows 7 or later.
+                            To install and run the program you must have Microsoft .NET Framework 4.5 and Windows 7 or later.
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <a data-toggle="collapse" data-parent="#FAQ" href="#QWhyMustInstall">
-                            It is a small, simple application. Why the need to install it?
+                            It is a small, simple program. Why the need to install it?
                         </a>
                     </div>
                     <div id="QWhyMustInstall" class="panel-collapse collapse">
                         <div class="panel-body">
-                            Yes the application is very small and simply, but installing it makes it easy to associate file extensions
+                            Yes the program is very small and simply, but installing it makes it easy to associate file extensions
                             with the program. This means .vplf files will both have a custom icon, and double-clicking on them will allow
-                            you to open the file with the application directly.
+                            you to open the file with the program directly.
                         </div>
                     </div>
                 </div>
@@ -123,33 +136,33 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <a data-toggle="collapse" data-parent="#FAQ" href="#QWindowsRunWarning">
-                            Why does Windows complain about the application being unsafe?
+                            Why does Windows complain about the program being unsafe?
                         </a>
                     </div>
                     <div id="QWindowsRunWarning" class="panel-collapse collapse">
                         <div class="panel-body">
-                            To avoid such warnings require applications to be signed by specific companies, with specific certificates.
-                            This costs money, and since this application is only meant for use in the Pearl I have not wanted to spend money on it.
-                            If you do not feel safe ignoring the warnings, you are welcome to not use the application.
+                            To avoid such warnings require programs to be signed by specific companies, with specific certificates.
+                            This costs money, and since this program is only meant for use in the Pearl I have not wanted to spend money on it.
+                            If you do not feel safe ignoring the warnings, you are welcome to not use the program.
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <a data-toggle="collapse" data-parent="#FAQ" href="#QInstallLocation">
-                            Where is the application installed?
+                            Where is the program installed?
                         </a>
                     </div>
                     <div id="QInstallLocation" class="panel-collapse collapse">
                         <div class="panel-body">
-                            By default the application is installed in <i>C:\Program Files (x86)\Velvet Pearl\Lottery\</i> but you may have chosen a different location when installing.
+                            By default the program is installed in <i>C:\Program Files (x86)\Velvet Pearl\Lottery\</i> but you may have chosen a different location when installing.
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <a data-toggle="collapse" data-parent="#FAQ" href="#QNoExecution">
-                            When I try and open the application nothing happens?
+                            When I try and open the program nothing happens?
                         </a>
                     </div>
                     <div id="QNoExecution" class="panel-collapse collapse">
@@ -168,17 +181,16 @@
                     </div>
                     <div id="QRemoveProgram" class="panel-collapse collapse">
                         <div class="panel-body">
-                            You can either remove the program by running the install again and choose 'Remove', or by going to
+                            The program can be removed by double-clicking the <i>Uninstall</i> shortcut in the program's install folder.
+                            Alternative you can run the installer again and choose 'Remove', or uninstall the program by going to
                             Programs and Features (also known as Add/remove Programs or Uninstall Programs) in Windows Control Panel.
-                            From there it can be removed as well. It will also remove the installation folder if no custom files have been
-                            placed in it, such as saved lottery files (.vplf files).
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <a data-toggle="collapse" data-parent="#FAQ" href="#QHowToContact">
-                            How do I contact the application author?
+                            How do I contact the program author?
                         </a>
                     </div>
                     <div id="QHowToContact" class="panel-collapse collapse">
@@ -196,33 +208,36 @@
                     </div>
                     <div id="QSeeInstalledVersion" class="panel-collapse collapse">
                         <div class="panel-body">
-                            The version of the installed application can be found by going to Windows Controlpanel, in the Add/Remove Programs section
+                            The version of the installed program can be found by going to Windows Controlpanel, in the Add/Remove Programs section
                             (also known as Uninstall Programs), and then finding Velvet Pearl Lottry. One of the shown column will have a version number.
+                            Alternatively you can navigate to the program's install folder, right-click on <i>Velvet Pearl Lottery.exe</i> and choose properties.
+                            Under the <i>Details</i> tab in the top of the window there will be an entry for Product version and File version. Either of these are
+                            the version of your installation.
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <a data-toggle="collapse" data-parent="#FAQ" href="#QAutomaticUpdate">
-                            Does the application automatically update?
+                            Does the program automatically update?
                         </a>
                     </div>
                     <div id="QAutomaticUpdate" class="panel-collapse collapse">
                         <div class="panel-body">
-                            Not as of yet. To update to the newest version you have to <a href="http://files.enjin.com/72287/apps/velvet_pearl_lottery/vp_lottery_setup.msi">download the latest installer</a> and run it.
-                            The installer will then remove your old version and install the new one. This will not alter any saves you mmight have created.
+                            As of version 1.1.0 the program will now automatically check for updates when it is started, if it has access to the internet and velvetpearl.enjin.com is reachable.
+                            If an update is found it will ask you whether you want to download and install the update.                             
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <a data-toggle="collapse" data-parent="#FAQ" href="#QDataFileExtension">
-                            What does the application save its files as?
+                            What does the program save its files as?
                         </a>
                     </div>
                     <div id="QDataFileExtension" class="panel-collapse collapse">
                         <div class="panel-body">
-                            The application saves data in a .vplf file format, and will only accept these. It is, however, plain XML and any
+                            The program saves data in a .vplf file format, and will only accept these. It is, however, plain XML and any
                             standard word processor or browser will be able to open these files.
                         </div>
                     </div>

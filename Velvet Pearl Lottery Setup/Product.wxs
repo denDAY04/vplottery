@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
   <?include InstallerVarsGlobal.wxi?>
     
   <!--The product that will be installed-->
@@ -20,6 +21,7 @@
                Description="The main executable, containing both the graphical user interface, data models." 
                Level="1">
 			  <ComponentRef Id="MainExecutable" />
+        <ComponentRef Id="JsonLib"/>
         <ComponentRef Id="DatafileIcon"/>
         <ComponentRef Id="ProgramIcon"/>
         <ComponentRef Id="Readme"/>
@@ -31,6 +33,7 @@
 
     <Icon Id="ApplicationIcon.exe" SourceFile="resources\vpl_program.ico"/>
     <Icon Id="ApplicationIcon.ico" SourceFile="resources\vpl_program.ico"/>
+    <Icon Id="UninstallIcon.ico" SourceFile="resources\uninstall.ico"/>
     
     <!--Set info for Control Panel -> Add/Remove Programs entry--> 
     <Icon Id="DatafileIcon.ico" SourceFile="resources\velvet_pearl_lottery_file.ico"/>
@@ -65,12 +68,10 @@
 				    <Directory Id="INSTALLDIR" />
 
             <!--Resource directory-->          
-            <Directory Id="ResourceDir" Name="Resources">
-              <!--Icon for data (.vplf) files-->
+            <Directory Id="LogoDir" Name="Logo">
               <Component Id="DatafileIcon" Guid="*">           
-                <File Id="DatafileIconVPLF" Name="vplf.ico" Source="resources\velvet_pearl_lottery_file.ico" />
+                <File Id="DatafileIconVPLF" Name="Lottery file.ico" Source="resources\velvet_pearl_lottery_file.ico" />
               </Component>  
-              <!--Icon for exe-->
               <Component Id="ProgramIcon" Guid="*">
                 <File Id="ProgramIconEXE" Name="Velvet Pearl Lottery.ico" Source="resources\vpl_program.ico"/>
               </Component>
@@ -79,29 +80,46 @@
             <!--Main program/executable-->
             <Component Id="MainExecutable" Guid="*">
               <!--Executable file-->
-              <File Id="VelvetPearlLotteryEXE" Name="Velvet Pearl Lottery.exe" Source="resources\Velvet Pearl Lottery.exe" KeyPath="yes">
+              <File Id="VelvetPearlLotteryEXE" Source="resources\Velvet Pearl Lottery.exe" KeyPath="yes">
                 <Shortcut Id="startMenuShortcut" Directory="ProgramMenuDir" Name="Velvet Pearl Lottery" WorkingDirectory="INSTALLDIR" Icon="ApplicationIcon.exe" IconIndex="0" Advertise="yes"/>
                 <Shortcut Id="desktopShortcut" Directory="DesktopFolder" Name="Velvet Pearl Lottery" WorkingDirectory="INSTALLDIR" Icon="ApplicationIcon.exe" IconIndex="0" Advertise="yes"/>
               </File>
+              <!--Executable config for definint .NET version and path to libraries-->
+              <File Id="VelvetPearlLotteryEXECONFIG" Source="resources\Velvet Pearl Lottery.exe.config"/>
+              <!--Uninstall shortcut-->
+              <Shortcut Id="UninstallProduct" Name="Uninstall" Description="Uninstall Velvet Pearl Lottery" Target="[System64Folder]msiexec.exe" Arguments="/x [ProductCode]" WorkingDirectory="WindowsFolder" Icon="UninstallIcon.ico"/>
               <!--Associate .vplf files and give an icon in registry-->
-              <ProgId Id="LotteryDataFileFormat" Description="Velvet Pearl Lottery data file" Advertise="yes" Icon="DatafileIcon.ico">
+              <ProgId Id="LotteryDataFileFormat" Description="Velvet Pearl Lottery File" Advertise="yes" Icon="DatafileIcon.ico">
                 <Extension Id="vplf">
                   <Verb Id="open" Command="Open" Argument='"%1"' />
                   <MIME Advertise="yes" ContentType="application/vplf" Default="yes"/>
                 </Extension>
               </ProgId>
-            </Component>   
+            </Component>
+
+            <!--Libraries-->
+            <Directory Id="LibDir" Name="Lib">
+              <Component Id="JsonLib" Guid="*">
+                <File Id="JsonDLL" Source="resources\Newtonsoft.Json.dll" KeyPath="yes"/>
+                <CreateFolder Directory="LibDir">
+                  <util:PermissionEx User="Users" GenericAll="yes"/>
+                </CreateFolder>
+              </Component>  
+            </Directory>            
+            
+            <!--Readme file-->
+            <Component Id="Readme" Guid="*">
+              <File Id="ReadmeTXT" Name="README.txt" Source="resources\README.txt"/>
+            </Component>
           
-           <!--Readme file-->
-          <Component Id="Readme" Guid="*">
-            <File Id="ReadmeTXT" Name="README.txt" Source="resources\README.txt"/>
-          </Component>
-          
-          <!--License file-->
+            <!--License file-->
             <Component Id="License" Guid="*">
               <File Id="LicenseRTF" Name="LICENSE.rtf" Source="resources\license.rtf"/>
             </Component>
-          
+
+            <!--Working directory for uninstall process, allowing it to remove the program folder-->
+            <Directory Id="WindowsFolder" Name="WindowsFolder" />
+
           </Directory>
         </Directory>
 			</Directory>
@@ -117,18 +135,21 @@
       </Directory>
 
       <!--Desktop reference-->
-      <Directory Id="DesktopFolder" Name="Desktop" />
+      <Directory Id="DesktopFolder" Name="Desktop" />      
       
       <!--Directory in C:\ProgramData for log files-->
       <Directory Id="CommonAppDataFolder">
         <Directory Id="VelvetPearlProgramDataDir" Name="Velvet Pearl">
           <Directory Id="LotteryLogDir" Name="Lottery">
-            <Component Id="LotteryLogs" Guid="*">
-              <File Id="UpdateErrorsLOG" Name="Update errors.log" Source="resources\Update errors.log"/>
+            <Component Id="LotteryLogs" Guid="{72FAC52F-6ABF-4A21-8267-A11DBD6D9E54}" KeyPath="yes">
+              <File Id="UpdateErrorLogTXT" Source="resources\Update error log.txt" />
+              <CreateFolder Directory="VelvetPearlProgramDataDir">
+                <util:PermissionEx User="Users" GenericAll="yes"/>
+              </CreateFolder>
             </Component>
           </Directory>
-        </Directory>
-      </Directory>
+        </Directory>                  
+      </Directory>      
       
 		</Directory>    
 	</Fragment>

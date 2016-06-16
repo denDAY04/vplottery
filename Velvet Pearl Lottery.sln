@@ -13,7 +13,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BBE002E1-4D2E-490C-9E35-CDD008C77598}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		InstallerVarsGlobal.wxi = InstallerVarsGlobal.wxi
 		newest_release.json = newest_release.json
 		README.md = README.md
 		vpl_program.ico = vpl_program.ico
@@ -41,9 +40,11 @@ Global
 		{73D0ACAB-C428-469A-A430-A421DF5BC964}.Release|x86.ActiveCfg = Release|Any CPU
 		{73D0ACAB-C428-469A-A430-A421DF5BC964}.Release|x86.Build.0 = Release|Any CPU
 		{11F810E3-8F0B-4973-9AD3-1B9EDF8640D7}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{11F810E3-8F0B-4973-9AD3-1B9EDF8640D7}.Debug|Any CPU.Build.0 = Debug|x86
 		{11F810E3-8F0B-4973-9AD3-1B9EDF8640D7}.Debug|x86.ActiveCfg = Debug|x86
 		{11F810E3-8F0B-4973-9AD3-1B9EDF8640D7}.Debug|x86.Build.0 = Debug|x86
 		{11F810E3-8F0B-4973-9AD3-1B9EDF8640D7}.Release|Any CPU.ActiveCfg = Release|x86
+		{11F810E3-8F0B-4973-9AD3-1B9EDF8640D7}.Release|Any CPU.Build.0 = Release|x86
 		{11F810E3-8F0B-4973-9AD3-1B9EDF8640D7}.Release|x86.ActiveCfg = Release|x86
 		{11F810E3-8F0B-4973-9AD3-1B9EDF8640D7}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection

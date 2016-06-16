@@ -276,6 +276,7 @@
   <PropertyGroup>
     <PostBuildEvent>for %25%25f in (
 "$(TargetFileName)"
+"$(TargetFileName).config"
 Newtonsoft.Json.dll
 ) do (
 copy %25%25f "$(SolutionDir)Velvet Pearl Lottery Setup\resources\" /Y

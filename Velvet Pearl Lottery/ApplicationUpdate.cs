@@ -15,13 +15,11 @@ namespace Velvet_Pearl_Lottery {
     public class ApplicationUpdate : WebClient {
         
         //! URI of the file that contains the version number of the latest application update.
-        private const string AppVersionJsonUri = "http://files.enjin.com/72287/apps/velvet_pearl_lottery/newest_release.jso";
+        private const string AppVersionJsonUri = "http://files.enjin.com/72287/apps/velvet_pearl_lottery/newest_release.json";
         //! URI for the application setup file.
         private const string AppMsiUri = "http://files.enjin.com/72287/apps/velvet_pearl_lottery/vp_lottery_setup.msi";
-        //! Filestream fro the error log for updates.
-        private static StreamWriter ErrorLog { get; set; }
         //! Filename of the error log for updates.
-        private const string ErrorLogSubFilename = "\\Velvet Pearl\\Lottery\\Update errors.log";
+        private const string ErrorLogSubFilename = "\\Velvet Pearl\\Lottery\\Update error log.txt";
 
         //! Flag for whether an update is available.
         public bool UpdateAvailable { get; private set; }
@@ -60,7 +58,7 @@ namespace Velvet_Pearl_Lottery {
             try {
                 dataStream = webController.OpenRead(AppVersionJsonUri);
                 if (dataStream == null) {
-                    LogError("Data stream for JSON version file was null.");
+                    LogError("Data stream for JSON version file " + AppVersionJsonUri + " was null.");
                     return null;
                 }
                     
@@ -69,7 +67,7 @@ namespace Velvet_Pearl_Lottery {
                 newestVersion = JsonConvert.DeserializeObject<ApplicationVersion>(jsonResponse.ToString());
             }
             catch (WebException e) {
-                LogError(e.Message);
+                LogError(e.Message + " Targe URI: " + AppVersionJsonUri);
                 return null;
             }
             finally {                
@@ -86,17 +84,12 @@ namespace Velvet_Pearl_Lottery {
             \param The message that should be written to the log.
         */
         private static void LogError(string message) {
-            try {
-                if (ErrorLog == null) {
-                    var path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-                    ErrorLog = new StreamWriter(path + ErrorLogSubFilename, true);
-                }
-
+            try {            
+                var path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
                 var timestamp = DateTime.Now.ToString(CultureInfo.InvariantCulture);
-                ErrorLog.WriteLine("{0}\t\t{1}", timestamp, message);
-                ErrorLog.Flush();
+                System.IO.File.AppendAllText(path + ErrorLogSubFilename, $"{timestamp}\t\t{message}");
             }
-            catch (Exception) {
+            catch (Exception) {                
                 // Do nothing.
             }
         }
@@ -146,7 +139,7 @@ namespace Velvet_Pearl_Lottery {
                 return true;
             }
             catch (Exception e) {
-                LogError(e.Message);
+                LogError(e.Message + " Target URI: " + AppMsiUri);
                 return false;
             }
         }
