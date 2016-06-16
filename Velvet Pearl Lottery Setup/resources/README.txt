@@ -2,7 +2,7 @@
 ::: FAQ :::
 -----------
 An updated FAQ can be found at
-http://files.enjin.com/72287/apps/Velvet%20Pearl%20Lottery/help.html
+http://files.enjin.com/72287/apps/velvet_pearl_lottery/help.html
 
 
 -------------------
